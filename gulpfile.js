@@ -25,14 +25,6 @@ gulp.task('reload', function (done) {
     done();
 });
 
-// gulp.task('inject', function () {
-//     let target = gulp.src('./src/index.html');
-//     let sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false});
-//
-//     return target.pipe(inject(sources))
-//         .pipe(gulp.dest('dist'));
-// });
-
 gulp.task('css', function () {
     gulp.src('src/app/css/**/*.css')
         .pipe(cleanCSS())
@@ -40,7 +32,34 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('fileinclude', function () {
+gulp.task('fonts', function () {
+    gulp.src('src/app/fonts/**/*')
+        .pipe(gulp.dest('dist/fonts'));
+});
+
+
+
+gulp.task('js', function () {
+    gulp.src('src/app/js/**/*')
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('dist/js'));
+});
+
+
+gulp.task('jquery', function () {
+    gulp.src('src/app/js_jquery/jquery.min.js')
+        .pipe(gulp.dest('dist/js'));
+});
+
+
+
+gulp.task('images', function () {
+    gulp.src('src/app/images/**/*')
+        .pipe(gulp.dest('dist/images'));
+});
+
+
+gulp.task('html', function () {
     gulp.src('src/app/*.html')
         .pipe(fileinclude({
             prefix: '@@',
@@ -50,11 +69,26 @@ gulp.task('fileinclude', function () {
 });
 
 
-gulp.task('default', gulp.parallel('css','fileinclude', 'serve', 'watch'));
+gulp.task('default', gulp.parallel('css', 'js', 'jquery', 'html', 'fonts', 'images', 'serve', 'watch'));
 
-// gulp.task('useref', function () {
-//     return gulp.src('src/*.html')
-//         .pipe(useref())
-//         .pipe(gulpif('*.css', csso()))
-//         .pipe(gulp.dest('dist'))
-// })
+
+gulp.task('jsx', function () {
+    gulp.src(['/src/app/js/**/!(jquery.min.js)'])   //except jquery
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('jsss', function () {
+    gulp.src([
+        '/src/app/js/**/bootstrap.min.js',
+        '/src/app/js/**/aos.js',
+        '/src/app/js/**/owl.carousel.min.js',
+        '/src/app/js/**/rellax.min.js',
+        '/src/app/js/**/smoothscroll.js',
+        '/src/app/js/**/custom.js',
+    ])
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('dist/js'));
+});
+gulp.task('js_only', gulp.parallel('jsss', 'serve', 'watch'));
+
