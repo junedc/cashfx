@@ -7,11 +7,17 @@ const inject = require('gulp-inject');
 let concat = require('gulp-concat');
 const fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
+// var gutil = require( 'gulp-util' );
+var ftp = require( 'vinyl-ftp' );
 
+
+gulp.task('watchx', function () {
+    gulp.watch('src/app/**/*.scss', gulp.series('reload'));
+    gulp.watch('src/app/**/*.{html,js,css}', gulp.series('reload'));
+});
 
 gulp.task('watch', function () {
-    gulp.watch('src/scss/**/*.scss', gulp.series('reload'));
-    gulp.watch('src/**/*.{html,js,css}', gulp.series('reload'));
+    gulp.watch('src/app/**/*.{html,js,css}', gulp.series('reload'));
 });
 
 gulp.task('serve', function () {
@@ -68,8 +74,35 @@ gulp.task('html', function () {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task( 'deploy', function () {
+
+    var conn = ftp.create( {
+        host:     'ftp.pinoybizness.com',
+        user:     'pogiako@pinoybizness.com',
+        password: 'PA55w0rdk0t0n0',
+        parallel: 1
+    } );
+
+    var globs = [
+        "**"
+    ];
+
+    // using base = '.' will transfer everything to /public_html correctly
+    // turn off buffering in gulp.src for best performance
+
+    return gulp.src( globs, {cwd: 'dist', base: "dist", buffer: false } )
+        .pipe( conn.newer( '/juana8.com' ) ) // only upload newer files
+        .pipe( conn.dest( '/juana8.com' ) );
+
+} );
 
 gulp.task('default', gulp.parallel('css', 'js', 'jquery', 'html', 'fonts', 'images', 'serve', 'watch'));
+
+gulp.task('changes', gulp.parallel( 'html','serve', 'watch'));
+
+
+
+
 
 
 gulp.task('jsx', function () {
