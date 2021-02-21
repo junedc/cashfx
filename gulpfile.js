@@ -102,9 +102,6 @@ gulp.task('changes', gulp.parallel( 'html','serve', 'watch'));
 
 
 
-
-
-
 gulp.task('jsx', function () {
     gulp.src(['/src/app/js/**/!(jquery.min.js)'])   //except jquery
         .pipe(concat('app.js'))
