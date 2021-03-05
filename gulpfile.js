@@ -91,12 +91,15 @@ gulp.task( 'deploy', function () {
     // turn off buffering in gulp.src for best performance
 
     return gulp.src( globs, {cwd: 'dist', base: "dist", buffer: false } )
-        .pipe( conn.newer( '/juana8.com' ) ) // only upload newer files
+        // .pipe( conn.newer( '/juana8.com' ) ) // only upload newer files
         .pipe( conn.dest( '/juana8.com' ) );
 
 } );
 
-gulp.task('default', gulp.parallel('css', 'js', 'jquery', 'html', 'fonts', 'images', 'serve', 'watch'));
+// gulp.task('default', gulp.parallel('css', 'js', 'jquery', 'html', 'fonts', 'images', 'serve', 'watch'));
+
+gulp.task('default', gulp.parallel('css', 'js', 'jquery', 'html', 'fonts', 'images','watch'));
+
 
 gulp.task('changes', gulp.parallel( 'html','serve', 'watch'));
 
