@@ -16,9 +16,18 @@
 
                     <h2 class="mb-4" data-aos="fade-up">what is <strong>Forex</strong></h2>
 
-                    <div class="embed-responsive embed-responsive-16by9 my-5 py-5" data-aos="fade-up">
+
+                    <div class="embed-responsive embed-responsive-16by9 my-5 py-5 play-youtube" data-aos="fade-up">
                         <iframe class="embed-responsive-item" width="800" height="450"
-                                src="https://www.youtube.com/embed/49JnDruUw80" frameborder="0"
+                                src="https://www.youtube.com/embed/NhFlqFVBmxc" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+
+
+                    <div class="embed-responsive embed-responsive-16by9 my-5 py-5 play-youtube" data-aos="fade-up">
+                        <iframe class="embed-responsive-item" width="800" height="450"
+                                src="https://www.youtube.com/embed/jo4z26THnpo" frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                     </div>
@@ -39,14 +48,18 @@
 
                     <h2 class="mb-4" data-aos="fade-up">what is <strong>CFX Group</strong></h2>
 
+                    <h4>Earn daily at the comfort of your home or office <br>
+                        No monthly fee<br>
+                        No selling<br>
+                        Automated<br>
+                    </h4>
+
                     <div class="embed-responsive embed-responsive-16by9 my-5 py-5" data-aos="fade-up">
                         <iframe class="embed-responsive-item" width="800" height="450"
-                                src="https://www.youtube.com/embed/49JnDruUw80" frameborder="0"
+                                src="https://www.youtube.com/embed/jQWDQgHTn4Q" frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                     </div>
-
-
                 </div>
             </div>
 
@@ -65,17 +78,27 @@
 
                     <h1 class="" data-aos="fade-up">Are you ready to earn on autopilot</h1>
 
-                    <a href="contact.html" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Let
+                    <div class="referral-link">
+                    <a href="https://joandc.cashfxgroup.com/register" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Let
                         us discuss together!</a>
+                    </div>
 
-                    <strong class="d-block py-3 pl-5 text-white" data-aos="fade-up" data-aos-delay="200"><i
-                            class="fa fa-phone mr-2"></i> +64 111-111</strong>
+                    <div class="referral-link">
+                        <a href="https://forexme.cashfxgroup.com/register" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Let
+                            us discuss together!</a>
+                    </div>
+
+                    <div class="referral-link">
+                        <a href="https://junedc.cashfxgroup.com/register" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Let
+                            us discuss together!</a>
+                    </div>
+<!--                    <strong class="d-block py-3 pl-5 text-white" data-aos="fade-up" data-aos-delay="200"><i-->
+<!--                            class="fa fa-phone mr-2"></i> +64 111-111</strong>-->
                 </div>
             </div>
 
             <div class="col-lg-6 col-12">
                 <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
-
                     <img src="images/working-girl.png" class="img-fluid" alt="working girl">
                 </div>
             </div>
@@ -215,6 +238,13 @@
 
 @@include('templates/footer.html')
 
+<script>
+    var random = Math.floor(Math.random() * $('.play-youtube').length);
+    $('.play-youtube').hide().eq(random).show();
 
+    var randomlink = Math.floor(Math.random() * $('.referral-link').length);
+    $('.referral-link').hide().eq(randomlink).show();
+
+</script>
 </body>
 </html>
